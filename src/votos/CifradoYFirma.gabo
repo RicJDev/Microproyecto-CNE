@@ -1,0 +1,9 @@
+Procedimiento CifradoYFirma(E: Presi.Nombre: Cadena, Sys.LlavePublicaEleccion: Cadena, Usuario.LlavePrivada: Cadena, S: Tx.VotoCifrado, Tx.FirmaDigital: Cadena);
+Inicio
+  Tx.VotoCifrado = "CIFRADO_RSA_DE_" + Presi.Nombre;
+  Tx.FirmaDigital = "FIRMA_DE_" + Usuario.LlavePrivada;
+
+  Mostrar << "...Encriptando seleccion con llave..." << Sys.LlavePublicaEleccion;
+  Mostrar << "...Firmando paquete digitalmente...";
+Fin_Procedimiento
+

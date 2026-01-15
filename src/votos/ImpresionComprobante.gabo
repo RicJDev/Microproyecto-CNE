@@ -1,0 +1,11 @@
+Procedimiento ImpresionComprobante(E/S: Tx.ID_Transaccion, Tx.Timestamp, Tx.FirmaDigital: Cadena);
+Inicio
+  Mostrar << "==================================";
+  Mostrar << "     COMPROBANTE DE VOTO         ";
+  Mostrar << "==================================";
+  Mostrar << "ID Transaccion:..." << Tx.ID_Transaccion;
+  Mostrar << "Fecha y Hora:..." << Tx.Timestamp;
+  Mostrar << "Firma Digital:..." << Tx.FirmaDigital;
+  Mostrar << "Estado: VOTO REGISTRADO";
+  Mostrar << "==================================";
+Fin_Procedimiento

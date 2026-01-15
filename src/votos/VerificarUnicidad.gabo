@@ -1,0 +1,9 @@
+Procedimiento VerificarUnicidad(E: Usuario.ID: Cadena, Usuario.HaVotado: Entero, S: EstadoVoto: Entero);
+Inicio
+  Si (Usuario.HaVotado == 1) entonces;
+    EstadoVoto = 1;
+  Sino;
+    EstadoVoto = 0;
+  Fin_Si
+Fin_Procedimiento
+

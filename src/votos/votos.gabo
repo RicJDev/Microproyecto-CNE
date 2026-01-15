@@ -1,0 +1,6 @@
+Procedimiento ConfigInicial(E/S: Sys.LlavePublicaEleccion: Cadena, Sys.EstadoLedger: Entero);
+Inicio
+  Sys.LlavePublicaEleccion = "*Inserte llave*";
+  Sys.EstadoLedger = 1;
+Fin_Procedimiento
+

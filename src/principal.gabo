@@ -1,0 +1,106 @@
+Algoritmo ModuloEmisionVotos
+  Registro: SistemaElectoral;
+    LlavePublicaEleccion: Cadena;
+    EstadoLedger: Entero;
+  Fin_Registro
+
+  Registro: Candidatos;
+    Partido: Cadena;
+    Nombre: Cadena;
+    Votos: Entero;
+  Fin_Registro
+
+  Registro: Votante;
+    ID: Cadena;
+    HaVotado: Entero;
+    LlavePrivada: Cadena;
+  Fin_Registro
+
+  Registro: Transaccion;
+    ID_Transaccion: Cadena;
+    Timestamp: Cadena;
+    VotoCifrado: Cadena;
+    FirmaDigital: Cadena;
+  Fin_Registro
+Inicio
+  Var Sys: SistemaElectoral;
+  Var Presi: Candidatos;
+  Var Usuario: Votante;
+  Var Tx: Transaccion;
+  Var Opc, EstadoVoto, Confirmacion, Candidato1, Candidato2, Candidato3, Candidato4: Entero;
+
+  ConfigInicial(Sys.LlavePublicaEleccion, Sys.EstadoLedger);
+
+  Mostrar << "--- SISTEMA DE VOTACION QUE MUESTRA LAS ACTAS ---";
+  Mostrar << "Bienvenido al Modulo de Emision";
+
+  Repetir
+    Mostrar << "1. Emitir Voto";
+    Mostrar << "2. Salir";
+    Leer >> Opc;
+
+    Mientras (Opc < 1 or Opc > 2) Hacer;
+      Mostrar << "Error de Datos";
+      Leer >> Opc;
+    Fin_Mientras
+
+    Si (Opc == 1) entonces;
+      Mostrar << "Ingrese su ID de Votante:";
+      Leer >> Usuario.ID;
+      Mostrar << "Ingrese su Llave Privada:";
+      Leer >> Usuario.LlavePrivada;
+
+      VerificarUnicidad(Usuario.ID, Usuario.HaVotado, EstadoVoto);
+
+      Si (EstadoVoto == 0) entonces;
+        Mostrar << "Bienvenido Mano";
+        Mostrar << "Elija al que se supone que le va a mejorar la vida"
+        Mostrar << "1.Edmundo Gonsalez";
+        Mostrar << "2.Elon Mak";
+        Mostrar << "3.Nicolas Maldito Maduro";
+        Mostrar << "4.Gabo Maps";
+        Leer >> Candidato;
+
+        En_Caso (Candidato > 0)Sea;
+          Caso (Candidato = 1);
+            Presi.Partido = "*Ingrese Partido*";
+            Presi.Nombre = "Edmundo Gonzalez";
+            Candidato1 = Cadidato1 + 1
+            Presi.Voto = Candidato1;
+          Caso (Candidato = 2)
+            Presi.Partido = "*Ingrese Partido*";
+            Presi.Nombre = "ElonMak";
+            Candidato2 = Cadidato2 + 1
+            Presi.Voto = Candidato2;
+          Caso (Candidato = 3)
+            Presi.Partido = "*Ingrese Partido*";
+            Presi.Nombre = "Nicolas Maldito Maduro";
+            Candidato3 = Cadidato3 + 1
+            Presi.Voto = Candidato3;
+          Caso (Candidato = 4)
+            Presi.Partido = "*Ingrese Partido*";
+            Presi.Nombre = "Gabo Maps";
+            Candidato4 = Cadidato4 + 1
+            Presi.Voto = Candidato4;
+        Fin_Caso
+
+       CifradoYFirma(Presi.Nombre, Sys.LlavePublicaEleccion, Usuario.LlavePrivada, Tx.VotoCifrado, Tx.FirmaDigital);
+       GenerarTransaccion(Tx.ID_Transaccion, Tx.Timestamp);
+       GuardarEnLedger(Tx.ID_Transaccion, Sys.EstadoLedger, Confirmacion);
+
+      Si (Confirmacion == 1) entonces;
+        Usuario.HaVotado = 1;
+        ImpresionComprobante(Tx.ID_Transaccion, Tx.Timestamp, Tx.FirmaDigital);
+      Sino;
+        Mostrar << "Chamo no se que paso pero hubo un error bien feo.";
+      Fin_Si
+
+      Sino;
+        Mostrar << "Epale chamo, mire usted ya voto.";
+      Fin_Si
+   Fin_Si
+
+  Hasta (Opc == 2);
+  Fin_Repetir
+  Mostrar << "Que Dios te bendiga Mano";
+Fin

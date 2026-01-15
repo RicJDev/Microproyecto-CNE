@@ -1,0 +1,10 @@
+Procedimiento GuardarEnLedger(E: Tx.ID_Transaccion: Cadena, Sys.EstadoLedger: Entero, S: Confirmacion: Entero);
+Inicio
+  Si (Sys.EstadoLedger == 1) entonces;
+    Confirmacion = 1;
+    Mostrar << "...Registrando en Ledger ID:..." << Tx.ID_Transaccion;
+  Sino;
+    Confirmacion = 0;
+  Fin_Si
+Fin_Procedimiento
+

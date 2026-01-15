@@ -1,0 +1,8 @@
+Procedimiento GenerarTransaccion(E/S: Tx.ID_Transaccion, Tx.Timestamp: Cadena);
+Inicio
+  Tx.ID_Transaccion = "9923912";
+  Tx.Timestamp = "2026-08-01 15:42:04";
+
+  Mostrar << "...Estructurando datos...";
+Fin_Procedimiento
+
