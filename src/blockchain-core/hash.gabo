@@ -1,0 +1,68 @@
+Funcion hash(texto: Cadena): Cadena;
+Inicio
+  var hash_resultante = "": Cadena;
+  var hash_numero = 2 ^ 4253 - 1; // Un numero primo bastante grande
+  var caracteres[n], c: Caracter;
+  var i, m, n: Entero;
+
+  split_string(caracteres[n], n);
+
+  Para (i = 1 Hasta i = n) Hacer;
+    c = caracteres[i];
+    m = caracter_a_entero(m);
+    hash_numero = (hash_numero * 31) + m;
+  Fin_Para
+
+  hash_numero = hash_numero MOD (2 ^ 607 - 1);
+
+  Devolver(hash_resultante);
+Fin_Funcion
+
+Funcion entero_a_cadena(car: Caracter): Entero;
+Inicio
+  // ...
+  Devolver();
+Fin_Funcion
+
+Funcion caracter_a_entero(car: Caracter): Entero;
+Inicio
+  // ...
+  Devolver();
+Fin_Funcion
+
+// Que misterio tan misterioso saber de donde proviene esto...
+
+Funcion join_char(caracteres[n]: Caracter, n: Entero): Cadena;
+Inicio
+  // Una funcion misteriosa que, de forma no determinada aun,
+  // consigue realizar la operacion inversa al otro procedimiento
+  // misterioso: pasar un arreglo de caracteres a cadena de texto
+
+  // Como avanza la tecnologia, vale...
+
+  // A menos que esto sea valido :D
+  // Eso le quita el misterio, pero al menos tiene sentido
+
+  var i: Entero;
+  var resultado: Cadena = "";
+
+  Para (i = 1 Hasta i = n) Hacer;
+    resultado = resultado + caracteres[i];
+  Fin_Para
+
+  Devolver (resultado);
+Fin_Funcion
+
+Procedimiento split_string(
+  E: texto: Cadena,
+  S: caracteres[n]: Caracter,
+  E: n: Entero
+);
+Inicio
+  // De alguna manera misteriosa este procedimiento logra convertir
+  // una cadena de texto en un arreglo unidimensional de caracteres
+  // que queda almacenado en `caracteres[n]`
+  // ¿Que no es posible? Todo es posible en la Dimension Desconocida
+
+  // :D
+Fin_Procedimiento
