@@ -7,12 +7,12 @@ Algoritmo ModuloEmisionVotos
   Registro: Candidatos;
     Partido: Cadena;
     Nombre: Cadena;
-    Votos: Entero;
+    ID, Votos: Entero;
   Fin_Registro
 
   Registro: Votante;
-    ID: Cadena;
-    HaVotado: Entero;
+    ID: Entero;
+    HaVotado: Booleano;
     LlavePrivada: Cadena;
   Fin_Registro
 
@@ -23,11 +23,20 @@ Algoritmo ModuloEmisionVotos
     FirmaDigital: Cadena;
   Fin_Registro
 Inicio
-  Var Sys: SistemaElectoral;
-  Var Presi: Candidatos;
-  Var Usuario: Votante;
-  Var Tx: Transaccion;
+  Var SistemaElectoral: Sys;
+  Var Candidatos: Presi[n_presi];
+  Var Votante: Usuario[n_usuarios];
+  Var Transaccion: Tx[n_usuarios];
   Var Opc, EstadoVoto, Confirmacion, Candidato1, Candidato2, Candidato3, Candidato4: Entero;
+
+  var n_presi = 10, n_usuarios: Entero;
+
+  cargar_candidatos(
+    Presi[n_presi].Nombre,
+    Presi[n_presi].Partido,
+    Presi[n_presi].Votos,
+    n_presi,
+  );
 
   ConfigInicial(Sys.LlavePublicaEleccion, Sys.EstadoLedger);
 

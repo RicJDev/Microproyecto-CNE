@@ -1,0 +1,11 @@
+Procedimiento mostrar_candidatos(
+  E:
+  Presi[n_presi].Nombre,
+  Presi[n_presi].Partido: Cadena,
+  Presi[n_presi].ID,
+  Presi[n_presi].Votos,
+  n_presi: Entero,
+);
+Inicio
+  // ...
+Fin_Procedimiento

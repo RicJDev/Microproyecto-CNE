@@ -1,0 +1,15 @@
+Procedimiento cargar_votantes(
+  E/S:
+  Usuarios[n_usuarios].ID: Entero,
+  Usuarios[n_usuarios].HaVotado: Entero,
+  Usuarios[n_usuarios].LlavePrivada: Cadena,
+  E:
+  n_usuarios: Entero
+);
+Inicio
+  var i: Entero;
+
+  Para (i = 1 Hasta i = n_usuarios) Hacer;
+    // ...
+  Fin_Para
+Fin_Procedimiento
