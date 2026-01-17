@@ -5,7 +5,7 @@ Inicio
   var caracteres[n], c: Caracter;
   var i, m, n: Entero;
 
-  split_string(caracteres[n], n);
+  split_string(texto, caracteres[n], n);
 
   Para (i = 1 Hasta i = n) Hacer;
     c = caracteres[i];
@@ -15,19 +15,67 @@ Inicio
 
   hash_numero = hash_numero MOD (2 ^ 607 - 1);
 
+  texto = entero_a_cadena(hash_numero);
+
+  Mientras (n < 240) Hacer;
+    split_string(texto, caracteres[n], n);
+
+    // Iremos metiendo ceros para ajustar la longitud de la cadena
+    texto = "0" + texto;
+  Fin_Mientras
+
+  hash_resultante = texto;
+
   Devolver(hash_resultante);
 Fin_Funcion
 
-Funcion entero_a_cadena(car: Caracter): Entero;
+Funcion entero_a_cadena(hash_numero: Entero): Cadena;
 Inicio
+  var resultado: Cadena;
+
   // ...
-  Devolver();
+
+  Devolver(resultado);
 Fin_Funcion
 
 Funcion caracter_a_entero(car: Caracter): Entero;
 Inicio
-  // ...
-  Devolver();
+  var letras[n_letras]: Caracter;
+  var i, n_letras = 63: Entero;
+
+  // Para cualquier otro caracter fuera del alfabeto
+  // devolvemos un mismo numero
+  var resultado = n_letras + 1: Entero; 
+
+  letras[1] = 'A'; letras[2] = 'B'; letras[3] = 'C';
+  letras[4] = 'D'; letras[5] = 'E'; letras[6] = 'F';
+  letras[7] = 'G'; letras[8] = 'H'; letras[9] = 'I';
+  letras[10] = 'J'; letras[11] = 'K'; letras[12] = 'L';
+  letras[13] = 'M'; letras[14] = 'N'; letras[15] = 'O';
+  letras[16] = 'P'; letras[17] = 'Q'; letras[18] = 'R';
+  letras[19] = 'S'; letras[20] = 'T'; letras[21] = 'U';
+  letras[22] = 'V'; letras[23] = 'W'; letras[24] = 'X';
+  letras[25] = 'Y'; letras[26] = 'Z'; letras[27] = 'a';
+  letras[28] = 'b'; letras[29] = 'c'; letras[30] = 'd';
+  letras[31] = 'e'; letras[32] = 'f'; letras[33] = 'g';
+  letras[34] = 'h'; letras[35] = 'i'; letras[36] = 'j';
+  letras[37] = 'k'; letras[38] = 'l'; letras[39] = 'm';
+  letras[40] = 'n'; letras[41] = 'o'; letras[42] = 'p';
+  letras[43] = 'q'; letras[44] = 'r'; letras[45] = 's';
+  letras[46] = 't'; letras[47] = 'u'; letras[48] = 'v';
+  letras[49] = 'w'; letras[50] = 'x'; letras[51] = 'y';
+  letras[52] = 'z'; letras[53] = '_'; letras[54] = '1';
+  letras[55] = '2'; letras[56] = '3'; letras[57] = '4';
+  letras[58] = '5'; letras[59] = '6'; letras[60] = '7';
+  letras[61] = '8'; letras[62] = '9'; letras[63] = '0';
+
+  Para (i = 1 Hasta i = n_letras) Hacer;
+    Si (letras[i] = car) Entonces;
+      resultado = i;
+    Fin_Si
+  Fin_Para
+
+  Devolver(resultado);
 Fin_Funcion
 
 // Que misterio tan misterioso saber de donde proviene esto...
