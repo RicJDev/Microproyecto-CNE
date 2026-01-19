@@ -25,3 +25,47 @@ Nuestra solución: implementar una blockchain.
 
 ## **Módulos del Sistema**
 
+### Blockchain Core
+
+- Incluye funciones para hashear, comparar hashes y comprobar la integridad de la cadena de bloques
+
+### Votantes
+
+- Incluye el registro de los ciudadanos con derecho al voto.
+- Utiliza una firma personal cifrada para simular la verificacion biometrica de nuestro sistema electoral
+
+### Candidatos
+
+- Registro de los mentiro... ejem... de los candidatos, con sus respectivos partidos politicos.
+
+### Votos
+
+- Interfaz para que el usuario pueda ejercer su derecho al voto. Aca es donde el usurio puede elegir su candidato, asegurando que solo lo haga una unica vez
+
+### Resultados
+
+- Y aqui esta la chicha: las actas. Se incluye un metodo de verificacion utilizando el Blockchain Core
+.
+├── README.md
+└── src
+    ├── blockchain-core
+    │   ├── hash.gabo
+    │   ├── validar_cadena.gabo
+    │   └── validar_hash.gabo
+    ├── candidatos
+    │   ├── cargar_candidatos.gabo
+    │   └── mostrar_candidatos.gabo
+    ├── principal.gabo
+    ├── resultados
+    │   ├── resultados.gabo
+    │   └── validar_resultados.gabo
+    ├── votantes
+    │   └── Usuarios.gabo
+    └── votos
+        ├── CifradoYFirma.gabo
+        ├── ConfigInicial.gabo
+        ├── EmisionVotos.gabo
+        ├── GenerarTransaccion.gabo
+        ├── GuardarEnLedger.gabo
+        ├── ImpresionComprobante.gabo
+        └── VerificarUnicidad.gabo
