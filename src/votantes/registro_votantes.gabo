@@ -1,0 +1,47 @@
+Registro votantes;
+  Number: entero;
+  Nombre, Apellido: cadena;
+  CI: entero;
+  Edad: entero;
+  Genero: cadena;
+  Nacimiento;
+Fin_Registro
+
+Registro Nacimiento;
+  DiaN: entero;
+  MesN: cadena;
+  AnnoN: entero;
+Fin_Registro
+
+Inicio
+  Var V[i]: votantes, F[j]: Nacimiento;
+  Var ob1, i = 1: entero, j = 1: entero, ci, an, fn, Ed: entero;
+  Var ob3, ob2, ob4: booleana;
+  Var N, A, gn, mn: cadena;
+
+  Repetir
+    Usuarios (N, A, fn, mn, an, ci, gn, Ed, ob2);
+    Mostrar << Usuarios;
+
+    N = V[i].Nombre;
+    A = V[i].Apellido;
+    Ed = V[i].Edad;
+    ci = V[i].CI;
+    gn = V[i].Genero;
+    fn = V[i].F[j].DiaN;
+    mn = V[i].F[j].MesN;
+    an = V[i].F[j].AnnoN;
+    cont = cont + 1;
+    cont = V[i].Number;
+
+    Mostrar <<"ingresar nuevo usuario, (1) si, (0) no";
+    Leer >> ob3;
+    si (ob3 = 1) entonces;
+      i = i + 1;
+      j = j + 1;
+    Fin_si
+
+    Hasta (ob3 = 0);
+  Fin_Repetir
+Fin
+

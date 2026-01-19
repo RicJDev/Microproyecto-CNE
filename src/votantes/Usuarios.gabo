@@ -1,0 +1,83 @@
+Procedimiento Usuarios (E/S: N: cadena, A: cadena, fn: entero, mn: cadena, an: entero, ci: entero, Ed: entero, gn: cadena);
+Inicio
+  var ob1: Entero;
+
+  Mostrar<<" ingresar nombre del votante";
+  Leer>> N;
+  Mostrar<<" ingresar apellido del votante";
+  Leer>> A;
+  Mostar<<" ingresar fecha de nacimiento";
+  Leer>> fn;
+
+  Mientras (fn < 1 or fn > 31) hacer;
+    Mostrar<<" error en los datos ingresados";
+    Leer>> fn;
+  Fin_Mientras
+
+  Mostrar<<" ingresar mes de nacimiento";
+  Mostrar<<"enero (1)  febrero (2)";
+  Mostrar<<"marzo (3)  abril (4)";
+  Mostrar<<"mayo (5)   junio (6)";
+  Mostrar<<"julio (7)   agosto (8)";
+  Mostrar<<"septiembre (9)  octubre (10)";
+  Mostrar<<"noviembre (11)   diciembre (12)";
+  Leer>> ob1;
+
+  Mientras (ob1 < 1 or ob1 > 12) hacer,
+    Mostrar<<" error en los datos ingresados";
+    Leer>> ob1;
+  Fin_Mientras 
+
+  En_Caso (ob1 > 1) sea;
+    Caso (ob1 = 1);
+      mn = "enero";
+    Caso (ob1 = 2);
+      mn = "febrero";
+    Caso (ob1 = 3);
+      mn = "marzo";
+    Caso (ob1 = 4);
+      mn = "abril";
+    Caso (ob1 = 5);
+      mn = "mayo";
+    Caso (ob1 = 6);
+      mn = "junio",
+    Caso (ob1 = 7);
+      mn = "julio";
+    Caso (ob1 = 8);
+      mn = "agosto";
+    Caso (ob1 = 9);
+      mn = "septiembre";
+    Caso (ob1 = 10);
+      mn = "octubre";
+    Caso (ob1 = 11);
+      mn = "noviembre";
+    Otro_Caso
+      mn = "diciembre";
+  Fin_Caso
+
+  Mostrar<<" ingrese el año de nacimiento";
+  Leer>> an;
+  Mientras (an > 2007) hacer;
+    Mostrar<<" error, no menores de edad";
+    Leer >> an;
+  Fin_mientras
+
+  Ed = 2025 – an;
+  Mostrar<<" ingresar cedula";
+  Leer ci;
+
+  Mientras (ci < 10000000) hacer;
+    Mostrar<<"error",
+    Leer>> ci;
+  Fin_Mientras
+
+  Mostrar<<" ingresar genero";
+  Mostrar<<" hombre (1), Mujer (0)";
+  Leer>> ob2;
+
+  Si (ob2 = 1) entonces;
+    gn = "hombre";
+    sino
+      gn = "mujer";
+  Fin_si
+Fin_Procedimiento
