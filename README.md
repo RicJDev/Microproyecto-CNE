@@ -45,6 +45,10 @@ Nuestra solución: implementar una blockchain.
 ### Resultados
 
 - Y aqui esta la chicha: las actas. Se incluye un metodo de verificacion utilizando el Blockchain Core
+
+## Y como siempre, el árbol de archivo
+
+```
 .
 ├── README.md
 └── src
@@ -69,3 +73,4 @@ Nuestra solución: implementar una blockchain.
         ├── GuardarEnLedger.gabo
         ├── ImpresionComprobante.gabo
         └── VerificarUnicidad.gabo
+```
