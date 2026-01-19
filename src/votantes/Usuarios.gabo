@@ -1,4 +1,14 @@
-Procedimiento Usuarios (E/S: N: cadena, A: cadena, fn: entero, mn: cadena, an: entero, ci: entero, Ed: entero, gn: cadena);
+Procedimiento Usuarios(
+  E/S:
+  N: cadena,
+  A: cadena,
+  fn: entero,
+  mn: cadena,
+  an: entero,
+  ci: entero,
+  Ed: entero,
+  gn: cadena
+);
 Inicio
   var ob1: Entero;
 

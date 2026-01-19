@@ -1,115 +1,81 @@
-Algoritmo ModuloEmisionVotos
-  Registro: SistemaElectoral;
-    LlavePublicaEleccion: Cadena;
-    EstadoLedger: Entero;
-  Fin_Registro
-
-  Registro: Candidatos;
-    Partido: Cadena;
-    Nombre: Cadena;
-    ID, Votos: Entero;
-  Fin_Registro
-
-  Registro: Votante;
+Algoritmo CNE 2.0
+  Registro: Votantes;
     ID: Entero;
+    Nombre, Apellido, Cedula: Cadena;
     HaVotado: Booleano;
     LlavePrivada: Cadena;
   Fin_Registro
 
-  Registro: Transaccion;
-    ID_Transaccion: Cadena;
-    Timestamp: Cadena;
-    VotoCifrado: Cadena;
-    FirmaDigital: Cadena;
+  Registro: Candidatos;
+    ID, Votos: Entero;
+    Partido, Nombre: Cadena;
+  Fin_Registro
+
+  Registro: CandidatosCopia;
+    ID, Votos: Entero;
+    Partido, Nombre: Cadena;
+  Fin_Registro
+
+  Registro: Voto;
+    ID, Candidato, HashActual, HashAnterior: Cadena;
   Fin_Registro
 Inicio
-  Var SistemaElectoral: Sys;
-  Var Candidatos: Presi[n_presi];
-  Var Votante: Usuario[n_usuarios];
-  Var Transaccion: Tx[n_usuarios];
-  Var Opc, EstadoVoto, Confirmacion, Candidato1, Candidato2, Candidato3, Candidato4: Entero;
+  var Votantes: votantes[n_vot];
+  var Votos: votos[n_vot];
+  var Candidatos: candidatos[n_can];
+  var CandidatosCopia: candidatosCopia[n_can];
 
-  var n_presi = 10, n_usuarios: Entero;
+  var n_vot, n_can: Entero;
+  var empezar: Booleano;
+
+  // 0: Sin iniciar
+  // 1: En carga de candidatos
+  // 2: En carga de votantes
+  // 3: En proceso de eleccion
+  // 4: En emision de resultados
+  var estado_eleccion = 0: Entero;
+
+  Mostrar << "Presione 1 para iniciar las elecciones. 0 Para salir";
+  Leer >> empezar;
+
+  Si (empezar = 1) Entonces;
+    estado_eleccion = 1;
+    Sino
+      Mostrar << "Bye, bye, Hawaii!";
+  Fin_Si
 
   cargar_candidatos(
-    Presi[n_presi].Nombre,
-    Presi[n_presi].Partido,
-    Presi[n_presi].Votos,
+    candidatos[n_presi].ID,
+    candidatos[n_presi].Votos,
+    candidatos[n_presi].Nombre,
+    candidatos[n_presi].Partido,
     n_presi,
+    estado_eleccion,
+  );
+  Mostrar << cargar_candidatos;
+
+  Usuarios(
+    // TODO: actualizar los parametros
+    estado_eleccion,
+  );
+  Mostrar << Usuarios;
+
+  votacion(
+    // TODO: actualizar los parametros
+    estado_eleccion
   );
 
-  ConfigInicial(Sys.LlavePublicaEleccion, Sys.EstadoLedger);
+  Mostrar << votacion;
 
-  Mostrar << "--- SISTEMA DE VOTACION QUE MUESTRA LAS ACTAS ---";
-  Mostrar << "Bienvenido al Modulo de Emision";
-
-  Repetir
-    Mostrar << "1. Emitir Voto";
-    Mostrar << "2. Salir";
-    Leer >> Opc;
-
-    Mientras (Opc < 1 or Opc > 2) Hacer;
-      Mostrar << "Error de Datos";
-      Leer >> Opc;
-    Fin_Mientras
-
-    Si (Opc == 1) entonces;
-      Mostrar << "Ingrese su ID de Votante:";
-      Leer >> Usuario.ID;
-      Mostrar << "Ingrese su Llave Privada:";
-      Leer >> Usuario.LlavePrivada;
-
-      VerificarUnicidad(Usuario.ID, Usuario.HaVotado, EstadoVoto);
-
-      Si (EstadoVoto == 0) entonces;
-        Mostrar << "Bienvenido Mano";
-        Mostrar << "Elija al que se supone que le va a mejorar la vida"
-        Mostrar << "1.Edmundo Gonsalez";
-        Mostrar << "2.Elon Mak";
-        Mostrar << "3.Nicolas Maldito Maduro";
-        Mostrar << "4.Gabo Maps";
-        Leer >> Candidato;
-
-        En_Caso (Candidato > 0)Sea;
-          Caso (Candidato = 1);
-            Presi.Partido = "*Ingrese Partido*";
-            Presi.Nombre = "Edmundo Gonzalez";
-            Candidato1 = Cadidato1 + 1
-            Presi.Voto = Candidato1;
-          Caso (Candidato = 2)
-            Presi.Partido = "*Ingrese Partido*";
-            Presi.Nombre = "ElonMak";
-            Candidato2 = Cadidato2 + 1
-            Presi.Voto = Candidato2;
-          Caso (Candidato = 3)
-            Presi.Partido = "*Ingrese Partido*";
-            Presi.Nombre = "Nicolas Maldito Maduro";
-            Candidato3 = Cadidato3 + 1
-            Presi.Voto = Candidato3;
-          Caso (Candidato = 4)
-            Presi.Partido = "*Ingrese Partido*";
-            Presi.Nombre = "Gabo Maps";
-            Candidato4 = Cadidato4 + 1
-            Presi.Voto = Candidato4;
-        Fin_Caso
-
-       CifradoYFirma(Presi.Nombre, Sys.LlavePublicaEleccion, Usuario.LlavePrivada, Tx.VotoCifrado, Tx.FirmaDigital);
-       GenerarTransaccion(Tx.ID_Transaccion, Tx.Timestamp);
-       GuardarEnLedger(Tx.ID_Transaccion, Sys.EstadoLedger, Confirmacion);
-
-      Si (Confirmacion == 1) entonces;
-        Usuario.HaVotado = 1;
-        ImpresionComprobante(Tx.ID_Transaccion, Tx.Timestamp, Tx.FirmaDigital);
-      Sino;
-        Mostrar << "Chamo no se que paso pero hubo un error bien feo.";
-      Fin_Si
-
-      Sino;
-        Mostrar << "Epale chamo, mire usted ya voto.";
-      Fin_Si
-   Fin_Si
-
-  Hasta (Opc == 2);
-  Fin_Repetir
-  Mostrar << "Que Dios te bendiga Mano";
+  Si (estado_eleccion = 4) Entonces;
+    resutados(
+      candidatos[n_can].Votos,
+      candidatos[n_can].Partido,
+      candidatos[n_can].Nombre,
+      candidatosCopia[n_can].Votos,
+      candidatosCopia[n_can].Partido,
+      candidatosCopia[n_can].Nombre,
+      n_can
+    );
+  Fin_Si
 Fin
