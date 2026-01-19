@@ -1,0 +1,50 @@
+Procedimiento resultados(
+  E/S:
+  candidatos[n_can].Votos: Entero,
+  candidatos[n_can].Partido,
+  candidatos[n_can].Nombre: Cadena,
+  candidatosCopia[n_can].Votos: Entero,
+  candidatosCopia[n_can].Partido,
+  candidatosCopia[n_can].Nombre: Cadena,
+  E:
+  n_can, n_vot: Entero
+);
+Inicio
+  var i, j: Entero;
+  var aux1: Entero;
+  var aux2: Cadena;
+  var porcentaje: Real;
+
+  Para (i = 1 Hasta i = n_can) Hacer;
+    candidatosCopia[i].Votos = candidatos[i].Votos;
+    candidatosCopia[i].Partido = candidatos[i].Partido;
+    candidatosCopia[i].Nombre = candidatos[i].Nombre;
+  Fin_Para
+
+  Para (i = 1 Hasta i = n_can) Hacer;
+    Para (j = 2 Hasta j = n_can - i) Hacer;
+      Si (candidatosCopia[i].Votos > candidatosCopia[i].Votos) Entonces;
+        aux1 = candidatosCopia[i].Votos;
+        candidatosCopia[i].Votos = candidatosCopia[j].Votos;
+        candidatosCopia[j].Votos = aux1;
+
+        aux2 = candidatosCopia[i].Partido;
+        candidatosCopia[i].Partido = candidatosCopia[j].Partido;
+        candidatosCopia[j].Partido = aux2;
+
+        aux2 = candidatosCopia[i].Nombre;
+        candidatosCopia[i].Nombre = candidatosCopia[j].Nombre;
+        candidatosCopia[j].Nombre = aux2;
+      Fin_Si
+    Fin_Para
+  Fin_Para
+
+  Para (i = 1 Hasta i = n_can) Hacer;
+    porcentaje = (candidatosCopia[i].Votos / n_vot) * 100;
+    Mostrar << "Posicion: ", i;
+    Mostrar << "Candidato: ", candidatosCopia[i].Nombre;
+    Mostrar << "Del partido: ", candidatosCopia[i].Partido;
+    Mostrar << "Con un total de ", candidatosCopia[i].Votos, " votos";
+    Mostrar << "Un ", porcentaje, "% de los votos";
+  Fin_Para
+Fin_Procedimiento
