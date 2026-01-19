@@ -1,22 +1,25 @@
 Procedimiento cargar_candidatos(
   E/S:
-  Presi[n_presi].Nombre,
-  Presi[n_presi].Partido: Cadena,
-  Presi[n_presi].ID,
-  Presi[n_presi].Votos: Entero,
+  candidatos[n_presi].ID,
+  candidatos[n_presi].Votos: Entero,
+  candidatos[n_presi].Nombre,
+  candidatos[n_presi].Partido: Cadena,
   E:
   n_presi: Entero,
+  E/S:
+  estado_eleccion: Entero
 );
 Inicio
   var i: Entero;
 
   Para (i = 1 Hasta i = n_presi) Hacer;
+    candidatos[i].ID = i;
+    candidatos[i].Votos = 0;
     Mostrar << "Ingrese el nombre de su candidato";
-    Leer >> Presi[i].Nombre;
+    Leer >> candidatos[i].Nombre;
     Mostrar << "Ingrese el partido de su candidato";
-    Leer >> Presi[i].Partido;
-
-    Presi[i].Votos = 0;
-    Presi[i].ID = i;
+    Leer >> candidatos[i].Partido;
   Fin_Para
+
+  estado_eleccion = 2;
 Fin_Procedimiento  
