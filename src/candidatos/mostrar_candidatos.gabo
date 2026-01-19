@@ -3,9 +3,14 @@ Procedimiento mostrar_candidatos(
   Presi[n_presi].Nombre,
   Presi[n_presi].Partido: Cadena,
   Presi[n_presi].ID,
-  Presi[n_presi].Votos,
   n_presi: Entero,
 );
 Inicio
-  // ...
+  Mostrar << "======= Lista de candidatos =========";
+
+  Para (i = 1 Hasta i = n_presi) Hacer;
+    Mostrar << "Id: ", Presi[i].ID;
+    Mostrar << "Partido: ", Presi[i].Partido ;
+    Mostrar << "Candidato: ", Presi[i].Nombre;
+  Fin_Para
 Fin_Procedimiento
