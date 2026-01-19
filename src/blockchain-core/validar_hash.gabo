@@ -1,0 +1,15 @@
+Funcion validar_hash(texto, objetivo: Cadena): Booleano;
+Inicio
+  var coinciden = 1: Booleano;
+  var comparacion: Cadena;
+
+  // Creamos un hash a partir del texto que queremos comprobar
+  comparacion = hash(texto);
+
+  Si (comparacion != objetivo) Entonces;
+    // Los hashes no coinciden
+    coinciden = 0;
+  Fin_Si
+
+  Devolver(coinciden);
+Fin_Funcion
